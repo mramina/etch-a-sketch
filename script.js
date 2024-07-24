@@ -5,13 +5,17 @@ document.addEventListener("DOMContentLoaded", () => {
   function createGrid(gridSize) {
     gridContainer.innerHTML = "";
 
-    gridContainer.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`; // кол-во столбцов и строк в зависимости от заданного размера
-    gridContainer.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
+    const blockSize = 700 / gridSize;
+
+    gridContainer.style.gridTemplateColumns = `repeat(${gridSize}, ${blockSize}px)`; // кол-во столбцов и строк в зависимости от заданного размера
+    gridContainer.style.gridTemplateRows = `repeat(${gridSize}, ${blockSize}px)`;
 
     // с помощью цикла создаем квадратики
     for (let i = 0; i < gridSize * gridSize; i++) {
       const block = document.createElement("div");
       block.classList.add("grid-block");
+      block.style.width = `${blockSize}px`;
+      block.style.height = `${blockSize}px`;
       block.addEventListener("mouseover", changeColor); // отработчик событий при наведении курсора
       gridContainer.appendChild(block);
     }
